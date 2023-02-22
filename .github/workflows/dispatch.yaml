@@ -1,0 +1,23 @@
+name: dispatch workflow
+
+on:
+
+  workflow_dispatch:
+    inputs:
+      username:
+        required: true
+        type: choice
+        options:
+        - Bala
+        - Mani
+
+
+jobs:
+  call-workflow-A:
+    uses: bakuppus/gh-reuse-one/.github/workflows/one.yaml@main
+    with:
+      username:  ${{ inputs.username }}
+    secrets:
+      token: ${{ secrets.CICD_GIT_TOKEN }}
+
+
